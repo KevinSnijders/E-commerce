@@ -8,7 +8,7 @@
 
 ## Installation
 
-- 
+-
 
 ### Clone
 
@@ -31,6 +31,7 @@ $ npm start
 ---
 
 ## Available Scripts
+
 ```shell
 $ npm start
 ```
