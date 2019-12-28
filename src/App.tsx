@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import Home from "./pages/home/Home.component";
+
 interface Props {}
 
 interface State {
@@ -15,7 +17,12 @@ class App extends Component<Props, State> {
 
   render() {
     const { text } = this.state;
-    return <div className="App">{text}</div>;
+    return (
+      <div className="App">
+        <Home />
+        {text}
+      </div>
+    );
   }
 }
 
