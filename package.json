@@ -18,18 +18,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
-    "lint:scss:fix": "stylelint 'src/**/*.scss' --syntax scss --fix",
     "lint": "eslint . --ext .jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "eslint --fix",
-      "git add"
-    ],
-    "src/**/*.scss": [
-      "stylelint --syntax scss --fix",
       "git add"
     ]
   },
