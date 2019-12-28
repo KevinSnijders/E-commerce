@@ -1,4 +1,5 @@
 import * as React from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
 import {
   MenuItemContainer,
@@ -10,12 +11,17 @@ import {
 
 import { Category } from "../directory/Directory.component";
 
-const MenuItem: React.FunctionComponent<Category> = ({
+type CategoryWithRoute = Category & RouteComponentProps;
+
+const MenuItem: React.FunctionComponent<CategoryWithRoute> = ({
   title,
-  preview
-}: Category) => {
+  preview,
+  url,
+  history,
+  match
+}: CategoryWithRoute) => {
   return (
-    <MenuItemContainer>
+    <MenuItemContainer onClick={() => history.push(`${match.url}${url}`)}>
       <BackgroundImageContainer
         className="background-image"
         preview={preview}
@@ -24,8 +30,9 @@ const MenuItem: React.FunctionComponent<Category> = ({
         <ContentTitle>{title}</ContentTitle>
         <ContentSubtitle>Shop nu</ContentSubtitle>
       </ContentContainer>
+      {console.log(`${match.url}${url}`)}
     </MenuItemContainer>
   );
 };
 
-export default MenuItem;
+export default withRouter(MenuItem);
