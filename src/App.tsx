@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
+import Home from "./pages/home/Home.component";
 
 interface Props {}
 
@@ -15,7 +17,15 @@ class App extends Component<Props, State> {
 
   render() {
     const { text } = this.state;
-    return <div className="App">{text}</div>;
+    return (
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Home />
+        </Switch>
+        {text}
+      </div>
+    );
   }
 }
 
