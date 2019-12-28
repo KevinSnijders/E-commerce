@@ -1,29 +1,24 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
+
 import Home from "./pages/home/Home.component";
+import Shop from "./pages/shop/Shop.component";
 
-interface Props {}
+import "./App.scss";
 
-interface State {
-  text: string;
-}
-class App extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      text: "App"
-    };
+class App extends Component<{}> {
+  componentDidMount() {
+    return null;
   }
 
   render() {
-    const { text } = this.state;
     return (
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/shop" component={Shop} />
           <Home />
         </Switch>
-        {text}
       </div>
     );
   }
