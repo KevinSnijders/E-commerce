@@ -3,7 +3,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import CustomButton from "../custom-button/CustomButton.component";
-
+import { signInWithGoogle } from "../../firebase/firebase.utils";
 import { SignInContainer, SignInTitle, SignInSubtitle } from "./SignIn.styles";
 
 import {
@@ -80,6 +80,9 @@ class SignIn extends Component<{}, FormValues> {
               </CustomFieldContainer>
 
               <CustomButton type="submit">Sign In</CustomButton>
+              <CustomButton type="button" onClick={signInWithGoogle}>
+                Sign in with Google
+              </CustomButton>
             </Form>
           )}
         </Formik>
