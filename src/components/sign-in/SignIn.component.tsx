@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+
+import CustomButton from "../custom-button/CustomButton.component";
+
 import { SignInContainer, SignInTitle, SignInSubtitle } from "./SignIn.styles";
+
+import {
+  CustomFieldContainer,
+  CustomFieldInput,
+  CustomFieldLabel
+} from "../form/CustomField.styles";
 
 interface FormValues {
   email: string;
@@ -38,25 +47,39 @@ class SignIn extends Component<{}, FormValues> {
         >
           {({ values, handleChange, handleBlur, handleSubmit }) => (
             <Form onSubmit={handleSubmit}>
-              <Field
-                type={email}
-                name={email}
-                placeholder={this.capitalizeFirstCharacter(email)}
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage name={email} />
-              <Field
-                type={password}
-                name={password}
-                placeholder={this.capitalizeFirstCharacter(password)}
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage name={password} />
-              <button type="submit">Sign In</button>
+              <CustomFieldContainer>
+                <CustomFieldInput
+                  type={email}
+                  name={email}
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <CustomFieldLabel
+                  className={values.password.length ? "shrink" : ""}
+                >
+                  {this.capitalizeFirstCharacter(email)}
+                </CustomFieldLabel>
+                <ErrorMessage name={email} />
+              </CustomFieldContainer>
+
+              <CustomFieldContainer>
+                <CustomFieldInput
+                  type={password}
+                  name={password}
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <CustomFieldLabel
+                  className={values.password.length ? "shrink" : ""}
+                >
+                  {this.capitalizeFirstCharacter(password)}
+                </CustomFieldLabel>
+                <ErrorMessage name={password} />
+              </CustomFieldContainer>
+
+              <CustomButton type="submit">Sign In</CustomButton>
             </Form>
           )}
         </Formik>
