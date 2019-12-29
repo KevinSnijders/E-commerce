@@ -4,7 +4,12 @@ import * as Yup from "yup";
 
 import CustomButton from "../custom-button/CustomButton.component";
 import { signInWithGoogle } from "../../firebase/firebase.utils";
-import { SignInContainer, SignInTitle, SignInSubtitle } from "./SignIn.styles";
+import {
+  SignInContainer,
+  SignInTitle,
+  SignInSubtitle,
+  ButtonsContainer
+} from "./SignIn.styles";
 
 import {
   CustomFieldContainer,
@@ -78,11 +83,16 @@ class SignIn extends Component<{}, FormValues> {
                 </CustomFieldLabel>
                 <ErrorMessage name={password} />
               </CustomFieldContainer>
-
-              <CustomButton type="submit">Sign In</CustomButton>
-              <CustomButton type="button" onClick={signInWithGoogle}>
-                Sign in with Google
-              </CustomButton>
+              <ButtonsContainer>
+                <CustomButton type="submit">Sign In</CustomButton>
+                <CustomButton
+                  type="button"
+                  isGoogleSignIn
+                  onClick={signInWithGoogle}
+                >
+                  Sign in with Google
+                </CustomButton>
+              </ButtonsContainer>
             </Form>
           )}
         </Formik>
