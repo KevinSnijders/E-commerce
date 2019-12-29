@@ -5,7 +5,7 @@ import Header from "./components/header/Header.component";
 import Home from "./pages/home/Home.component";
 import Shop from "./pages/shop/Shop.component";
 import Sign from "./pages/sign/Sign.component";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.scss";
 
@@ -34,7 +34,8 @@ class App extends Component<Props, State & User> {
   }
 
   handleAuth = () => {
-    auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(async user => {
+      createUserProfileDocument(user);
       if (user) {
         this.setState({
           currentUser: user
