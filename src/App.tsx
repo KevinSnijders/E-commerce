@@ -34,17 +34,23 @@ class App extends Component<Props, State & User> {
   }
 
   handleAuth = () => {
-    auth.onAuthStateChanged(async user => {
-      createUserProfileDocument(user);
-      if (user) {
-        this.setState({
-          currentUser: user
-        });
-      } else {
-        this.setState({
-          currentUser: null
-        });
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        // userRef.onSnapshot(snapShot => {
+        //   this.setState({
+        //     currentUser: {
+        //       id: snapShot.id,
+        //       ...snapShot.data()
+        //     }
+        //   });
+
+        // });
+        console.log(userRef);
       }
+      console.log(this.state);
+      this.setState({ currentUser: userAuth });
     });
   };
 
