@@ -5,18 +5,53 @@ import Header from "./components/header/Header.component";
 import Home from "./pages/home/Home.component";
 import Shop from "./pages/shop/Shop.component";
 import Sign from "./pages/sign/Sign.component";
+import { auth } from "./firebase/firebase.utils";
 
 import "./App.scss";
 
-class App extends Component<{}> {
-  componentDidMount() {
-    return null;
+interface Props {}
+
+export interface User {
+  currentUser: firebase.User | null;
+}
+interface State {}
+
+class App extends Component<Props, State & User> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      currentUser: null
+    };
   }
 
+  componentDidMount() {
+    this.handleAuth();
+  }
+
+  componentWillUnmount() {
+    this.handleAuth();
+  }
+
+  handleAuth = () => {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          currentUser: user
+        });
+      } else {
+        this.setState({
+          currentUser: null
+        });
+      }
+    });
+  };
+
   render() {
+    const { currentUser } = this.state;
     return (
       <div className="App">
-        <Header />
+        <Header currentUser={currentUser} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/shop" component={Shop} />
