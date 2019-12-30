@@ -2,19 +2,13 @@ import React, { Component } from "react";
 import CollectionPreview from "../../components/collection-preview/CollectionPreview.component";
 
 import { ShopContainer } from "./Shop.styles";
+import { Item } from "../../redux/cart/cartReducer";
 
 export interface Collection {
   id?: number;
   title: string;
   routeName: string;
-  products: Array<Product>;
-}
-
-export interface Product {
-  id?: number;
-  name: string;
-  imageUrl: string;
-  price: number;
+  items: Array<Item>;
 }
 
 interface Props {}
@@ -33,7 +27,7 @@ class Shop extends Component<Props, State> {
           id: 1,
           title: "Hats",
           routeName: "hats",
-          products: [
+          items: [
             {
               id: 1,
               name: "Brown Brim",
@@ -94,7 +88,7 @@ class Shop extends Component<Props, State> {
           id: 2,
           title: "Sneakers",
           routeName: "sneakers",
-          products: [
+          items: [
             {
               id: 1,
               name: "Adidas NMD",
@@ -149,7 +143,7 @@ class Shop extends Component<Props, State> {
           id: 3,
           title: "Jackets",
           routeName: "jackets",
-          products: [
+          items: [
             {
               id: 1,
               name: "Black Jean Shearling",
@@ -186,7 +180,7 @@ class Shop extends Component<Props, State> {
           id: 4,
           title: "Womens",
           routeName: "womens",
-          products: [
+          items: [
             {
               id: 1,
               name: "Blue Tanktop",
@@ -235,7 +229,7 @@ class Shop extends Component<Props, State> {
           id: 5,
           title: "Mens",
           routeName: "mens",
-          products: [
+          items: [
             {
               id: 1,
               name: "Camo Down Vest",
@@ -279,12 +273,12 @@ class Shop extends Component<Props, State> {
   }
 
   displayCollection = (collections: Array<Collection>) =>
-    collections.map(({ id, title, routeName, products }: Collection) => (
+    collections.map(({ id, title, routeName, items }: Collection) => (
       <CollectionPreview
         key={id}
         title={title}
         routeName={routeName}
-        products={products}
+        items={items}
       />
     ));
 
