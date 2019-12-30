@@ -5,6 +5,7 @@ import {
   CollectionItemContainer,
   BackgroundImageContainer,
   CollectionFooterContainer,
+  AddButton,
   NameContainer,
   PriceContainer
 } from "./CollectionItem.styles";
@@ -16,11 +17,12 @@ const CollectionItem: React.FC<Product> = ({
 }: Product) => {
   return (
     <CollectionItemContainer>
-      <BackgroundImageContainer imageUrl={imageUrl} />
+      <BackgroundImageContainer className="image" imageUrl={imageUrl} />
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
+      <AddButton customProp="inverted">Add to cart</AddButton>
     </CollectionItemContainer>
   );
 };
