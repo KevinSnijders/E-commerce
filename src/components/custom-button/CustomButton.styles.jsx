@@ -34,12 +34,12 @@ const GoogleSignInStyles = css`
   }
 `;
 
-const getButtonStyles = props => {
-  if (props.isGoogleSignIn) {
+const getButtonStyles = ({ customProp }) => {
+  if (customProp === "isGoogleSignIn") {
     return GoogleSignInStyles;
   }
 
-  return props.inverted ? InvertedButtonStyles : ButtonStyles;
+  return customProp === "inverted" ? InvertedButtonStyles : ButtonStyles;
 };
 
 export const CustomButtonContainer = styled.button`
