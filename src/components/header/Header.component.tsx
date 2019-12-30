@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+import { State } from "../../redux/rootReducer";
 import { auth } from "../../firebase/firebase.utils";
-import { User } from "../../App";
+import { UserState } from "../../redux/user/userReducer";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 import {
@@ -10,7 +12,7 @@ import {
   OptionLink
 } from "./Header.styles";
 
-const Header: React.FC<User> = ({ currentUser }: User) => {
+const Header: React.FC<UserState> = ({ currentUser }: UserState) => {
   return (
     <HeaderContainer>
       <LogoContainer to="/">
@@ -31,4 +33,8 @@ const Header: React.FC<User> = ({ currentUser }: User) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state: State) => ({
+  currentUser: state.user
+});
+
+export default connect(mapStateToProps)(Header);
