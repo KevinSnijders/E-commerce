@@ -30,7 +30,6 @@ const MenuItem: React.FunctionComponent<CategoryWithRoute> = ({
         <ContentTitle>{title}</ContentTitle>
         <ContentSubtitle>Shop nu</ContentSubtitle>
       </ContentContainer>
-      {console.log(`${match.url}${url}`)}
     </MenuItemContainer>
   );
 };
