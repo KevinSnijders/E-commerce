@@ -1,5 +1,5 @@
-import { UserActionTypes } from "./userTypes";
-import { SetCurrentUserAction } from "./userActions";
+import UserActionTypes from "./userTypes";
+import { UserActions } from "./userActions";
 
 export interface UserState {
   currentUser: firebase.User | null;
@@ -9,12 +9,7 @@ const initUserState: UserState = {
   currentUser: null
 };
 
-type UserReducerActions = SetCurrentUserAction;
-
-const userReducer = (
-  state: UserState = initUserState,
-  action: UserReducerActions
-) => {
+const userReducer = (state: UserState = initUserState, action: UserActions) => {
   switch (action.type) {
     case UserActionTypes.SET_CURRENT_USER:
       return {
