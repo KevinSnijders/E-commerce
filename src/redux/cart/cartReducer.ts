@@ -7,10 +7,15 @@ export interface Item {
   name: string;
   imageUrl: string;
   price: number;
+  quantity?: number;
 }
 
 export interface ItemState {
   item: Item;
+}
+
+export interface CartItems {
+  cartItems: Array<Item>;
 }
 
 export interface CartState {
