@@ -1,5 +1,6 @@
 import CartTypes from "./cartTypes";
 import { CartActions } from "./cartActions";
+import addItemToCart from "./CartUtils";
 
 export interface Item {
   id?: number;
@@ -13,8 +14,8 @@ export interface ItemState {
 }
 
 export interface CartState {
-  isOpen: boolean;
-  cartItems?: Array<Item> | null;
+  isOpen?: boolean;
+  cartItems?: Array<Item>;
 }
 
 const initCartState: CartState = {
@@ -32,7 +33,7 @@ const cartReducer = (state: CartState = initCartState, action: CartActions) => {
     case CartTypes.ADD_ITEM:
       return {
         ...state,
-        carItems: [...state.cartItems, action.payload]
+        cartItems: addItemToCart(state.cartItems, action.payload)
       };
     default:
       return {
