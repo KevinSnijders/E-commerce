@@ -3,8 +3,9 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Dispatch, AnyAction } from "redux";
 import setCurrentUser from "./redux/user/userActions";
-import { UserState } from "./redux/user/userReducer";
-import { RootState } from "./redux/rootReducer";
+import { UserState, User } from "./redux/user/userReducer";
+import selectCurrentUser from "./redux/user/userSelector";
+
 import Header from "./components/header/Header.component";
 import Home from "./pages/home/Home.component";
 import Shop from "./pages/shop/Shop.component";
@@ -13,8 +14,8 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.scss";
 
-const mapStateToProps = ({ user }: RootState) => ({
-  currentUser: user.currentUser
+const mapStateToProps = (state: User) => ({
+  currentUser: selectCurrentUser(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({

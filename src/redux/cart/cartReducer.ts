@@ -17,6 +17,7 @@ export interface ItemState {
 export interface Cart {
   cart: {
     cartItems: Array<Item>;
+    isOpen: boolean;
   };
 }
 
