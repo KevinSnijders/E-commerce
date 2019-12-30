@@ -14,6 +14,12 @@ export interface ItemState {
   item: Item;
 }
 
+export interface Cart {
+  cart: {
+    cartItems: Array<Item>;
+  };
+}
+
 export interface CartItems {
   cartItems: Array<Item>;
 }

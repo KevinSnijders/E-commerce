@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dispatch, AnyAction } from "redux";
 import { toggleCart } from "../../redux/cart/cartActions";
+import { selectCartItemsCount } from "../../redux/cart/cartSelector";
+import { Cart } from "../../redux/cart/cartReducer";
 
 import {
   CartIconContainer,
@@ -13,13 +15,21 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
   toggleCartFn: () => dispatch(toggleCart())
 });
 
-const CartIcon = ({ toggleCartFn }: ReturnType<typeof mapDispatchToProps>) => {
+const mapStateToProps = (state: Cart) => ({
+  itemCount: selectCartItemsCount(state)
+});
+
+const CartIcon = ({
+  toggleCartFn,
+  itemCount
+}: ReturnType<typeof mapDispatchToProps> &
+  ReturnType<typeof mapStateToProps>) => {
   return (
     <CartIconContainer>
       <ShoppingIcon onClick={toggleCartFn} />
-      <ItemCountContainer>1</ItemCountContainer>
+      <ItemCountContainer>{itemCount}</ItemCountContainer>
     </CartIconContainer>
   );
 };
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
