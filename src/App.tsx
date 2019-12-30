@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Dispatch, AnyAction } from "redux";
 import setCurrentUser from "./redux/user/userActions";
 import { UserState } from "./redux/user/userReducer";
+import { RootState } from "./redux/rootReducer";
 import Header from "./components/header/Header.component";
 import Home from "./pages/home/Home.component";
 import Shop from "./pages/shop/Shop.component";
@@ -12,11 +13,18 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.scss";
 
+const mapStateToProps = ({ user }: RootState) => ({
+  currentUser: user.currentUser
+});
+
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
   setCurrentUserReact: (user: UserState) => dispatch(setCurrentUser(user))
 });
 
-class App extends Component<ReturnType<typeof mapDispatchToProps>, {}> {
+class App extends Component<
+  ReturnType<typeof mapDispatchToProps> & ReturnType<typeof mapStateToProps>,
+  {}
+> {
   componentDidMount() {
     this.handleAuth();
   }
@@ -41,17 +49,22 @@ class App extends Component<ReturnType<typeof mapDispatchToProps>, {}> {
   };
 
   render() {
+    const { currentUser } = this.props;
     return (
       <div className="App">
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/shop" component={Shop} />
-          <Route path="/signin" component={Sign} />
+          <Route
+            exact
+            path="/signin"
+            render={() => (currentUser ? <Redirect to="/" /> : <Sign />)}
+          />
         </Switch>
       </div>
     );
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
