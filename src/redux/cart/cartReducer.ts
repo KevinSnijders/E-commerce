@@ -62,9 +62,7 @@ const cartReducer = (state: CartState = initCartState, action: CartActions) => {
         cartItems: clearItemFromCart(state.cartItems, action.payload)
       };
     default:
-      return {
-        ...state
-      };
+      return state;
   }
 };
 
