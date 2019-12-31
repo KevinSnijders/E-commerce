@@ -8,10 +8,6 @@ export const selectCollections = createSelector(
   shop => shop.collections
 );
 
-export interface CollectionId {
-  collectionId: string;
-}
-
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
   collections => Object.keys(collections).map((key: any) => collections[key])
