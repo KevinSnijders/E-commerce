@@ -1,6 +1,12 @@
 import UserActionTypes from "./userTypes";
 import { UserActions } from "./userActions";
 
+export interface User {
+  user: {
+    currentUser: firebase.User | CustomUserProps | null;
+  };
+}
+
 export interface CustomUserProps {
   id: string;
   displayName?: string;

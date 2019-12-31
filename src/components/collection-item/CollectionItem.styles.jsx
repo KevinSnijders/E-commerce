@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { CustomButtonContainer } from "../custom-button/CustomButton.styles";
 
 export const CollectionItemContainer = styled.div`
   width: 22vw;
@@ -6,7 +7,24 @@ export const CollectionItemContainer = styled.div`
   flex-direction: column;
   height: 350px;
   align-items: center;
-  postition: relative;
+  position: relative;
+  &:hover {
+    .image {
+      opacity: 0.8;
+    }
+    button {
+      opacity: 0.85;
+      display: flex;
+    }
+  }
+`;
+
+export const AddButton = styled(CustomButtonContainer)`
+  width: 80%;
+  opacity: 0.7;
+  position: absolute;
+  top: 255px;
+  display: none;
 `;
 
 export const BackgroundImageContainer = styled.div`
@@ -33,4 +51,5 @@ export const NameContainer = styled.span`
 
 export const PriceContainer = styled.span`
   width: 10%;
+  text-align: right;
 `;

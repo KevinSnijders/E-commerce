@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { RootState } from "../../redux/rootReducer";
 import { auth } from "../../firebase/firebase.utils";
-import { UserState } from "../../redux/user/userReducer";
-import { CartState } from "../../redux/cart/cartReducer";
+import { UserState, User } from "../../redux/user/userReducer";
+import { CartState, Cart } from "../../redux/cart/cartReducer";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 import CartIcon from "../cart-icon/CartIcon.component";
 import CartDropdown from "../cart-dropdown/CartDropdown.component";
+import { selectCartIsOpen } from "../../redux/cart/cartSelector";
+import selectCurrentUser from "../../redux/user/userSelector";
 
 import {
   HeaderContainer,
@@ -16,12 +17,9 @@ import {
   OptionLink
 } from "./Header.styles";
 
-const mapStateToProps = ({
-  user: { currentUser },
-  cart: { isOpen }
-}: RootState) => ({
-  currentUser,
-  isOpen
+const mapStateToProps = (state: User & Cart) => ({
+  currentUser: selectCurrentUser(state),
+  isOpen: selectCartIsOpen(state)
 });
 
 type HeaderState = UserState & CartState;
@@ -36,7 +34,7 @@ const Header = ({ currentUser, isOpen }: HeaderState) => {
         <OptionLink to="/shop">Shop</OptionLink>
         <OptionLink to="/contact">Contact</OptionLink>
         {currentUser ? (
-          <OptionLink as="div" onClick={() => auth.signOut()}>
+          <OptionLink as="div" to="/" onClick={() => auth.signOut()}>
             Sign Out
           </OptionLink>
         ) : (

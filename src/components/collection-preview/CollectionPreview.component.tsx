@@ -1,6 +1,8 @@
 import React from "react";
 import CollectionItem from "../collection-item/CollectionItem.component";
-import { Collection, Product } from "../../pages/shop/Shop.component";
+import { Collection } from "../../pages/shop/Shop.component";
+import { Item } from "../../redux/cart/cartReducer";
+
 import {
   CollectionPreviewContainer,
   TitleContainer,
@@ -9,22 +11,16 @@ import {
 
 const PreviewCollection: React.FC<Collection> = ({
   title,
-  products
+  items
 }: Collection) => {
   return (
     <CollectionPreviewContainer>
       <TitleContainer>{title.toUpperCase()}</TitleContainer>
       <PreviewContainer>
-        {products
-          .filter((product: Product, index: number) => index < 4)
-          .map(({ id, name, imageUrl, price }: Product) => (
-            <CollectionItem
-              key={id}
-              id={id}
-              name={name}
-              imageUrl={imageUrl}
-              price={price}
-            />
+        {items
+          .filter((item: Item, index: number) => index < 4)
+          .map((item: Item) => (
+            <CollectionItem key={item.id} item={item} />
           ))}
       </PreviewContainer>
     </CollectionPreviewContainer>
