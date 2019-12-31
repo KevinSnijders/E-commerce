@@ -1,6 +1,6 @@
 import React from "react";
 import CollectionItem from "../collection-item/CollectionItem.component";
-import { Collection } from "../../pages/shop/Shop.component";
+import { Collection } from "../../redux/shop/shopReducer";
 import { Item } from "../../redux/cart/cartReducer";
 
 import {
