@@ -10,7 +10,21 @@ export interface AddItemAction {
   payload: Item;
 }
 
-export type CartActions = ToggleCartAction | AddItemAction;
+export interface RemoveItemAction {
+  type: typeof CartTypes.REMOVE_ITEM;
+  payload: Item;
+}
+
+export interface ClearItemFromCartAction {
+  type: typeof CartTypes.CLEAR_ITEM_FROM_CART;
+  payload: Item;
+}
+
+export type CartActions =
+  | ToggleCartAction
+  | AddItemAction
+  | RemoveItemAction
+  | ClearItemFromCartAction;
 
 export const toggleCart = () => {
   return {
@@ -20,5 +34,15 @@ export const toggleCart = () => {
 
 export const addItem = (item: Item) => ({
   type: CartTypes.ADD_ITEM,
+  payload: item
+});
+
+export const removeItem = (item: Item) => ({
+  type: CartTypes.REMOVE_ITEM,
+  payload: item
+});
+
+export const clearItemFromCart = (item: Item) => ({
+  type: CartTypes.CLEAR_ITEM_FROM_CART,
   payload: item
 });

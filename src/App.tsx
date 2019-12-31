@@ -10,6 +10,7 @@ import Header from "./components/header/Header.component";
 import Home from "./pages/home/Home.component";
 import Shop from "./pages/shop/Shop.component";
 import Sign from "./pages/sign/Sign.component";
+import Checkout from "./pages/checkout/Checkout.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import "./App.scss";
@@ -62,6 +63,7 @@ class App extends Component<
             path="/signin"
             render={() => (currentUser ? <Redirect to="/" /> : <Sign />)}
           />
+          <Route exact path="/checkout" component={Checkout} />
         </Switch>
       </div>
     );
