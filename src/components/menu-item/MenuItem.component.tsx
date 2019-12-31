@@ -9,7 +9,7 @@ import {
   ContentSubtitle
 } from "./MenuItem.styles";
 
-import { Category } from "../directory/Directory.component";
+import { Category } from "../../redux/directory/directoryReducer";
 
 type CategoryWithRoute = Category & RouteComponentProps;
 
