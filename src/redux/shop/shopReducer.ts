@@ -7,6 +7,10 @@ export interface Collection {
   items: Array<Item>;
 }
 
+export interface CollectionList {
+  collections: Array<Collection>;
+}
+
 export interface Shop {
   shop: {
     collections: Array<Collection>;
@@ -14,12 +18,14 @@ export interface Shop {
 }
 
 export interface ShopState {
-  collections: Array<Collection>;
+  collections: {
+    [key: string]: Collection;
+  };
 }
 
 const initShopData: ShopState = {
-  collections: [
-    {
+  collections: {
+    hats: {
       id: 1,
       title: "Hats",
       routeName: "hats",
@@ -80,7 +86,7 @@ const initShopData: ShopState = {
         }
       ]
     },
-    {
+    sneakers: {
       id: 2,
       title: "Sneakers",
       routeName: "sneakers",
@@ -135,7 +141,7 @@ const initShopData: ShopState = {
         }
       ]
     },
-    {
+    jackets: {
       id: 3,
       title: "Jackets",
       routeName: "jackets",
@@ -172,7 +178,7 @@ const initShopData: ShopState = {
         }
       ]
     },
-    {
+    womens: {
       id: 4,
       title: "Womens",
       routeName: "womens",
@@ -221,7 +227,7 @@ const initShopData: ShopState = {
         }
       ]
     },
-    {
+    mens: {
       id: 5,
       title: "Mens",
       routeName: "mens",
@@ -264,7 +270,7 @@ const initShopData: ShopState = {
         }
       ]
     }
-  ]
+  }
 };
 
 const shopReducer = (state: ShopState = initShopData, action: any) => {

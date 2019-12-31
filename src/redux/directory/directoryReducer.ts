@@ -20,31 +20,31 @@ const initDirectoryState: DirectoryState = {
       id: 1,
       title: "Hats",
       preview: "https://i.ibb.co/cvpntL1/hats.png",
-      url: "hats"
+      url: "shop/hats"
     },
     {
       id: 2,
       title: "Jackets",
       preview: "https://i.ibb.co/px2tCc3/jackets.png",
-      url: ""
+      url: "shop/jackets"
     },
     {
       id: 3,
       title: "Sneakers",
       preview: "https://i.ibb.co/0jqHpnp/sneakers.png",
-      url: ""
+      url: "shop/sneakers"
     },
     {
       id: 4,
       title: "Womens",
       preview: "https://i.ibb.co/GCCdy8t/womens.png",
-      url: ""
+      url: "shop/womens"
     },
     {
       id: 5,
       title: "Mens",
       preview: "https://i.ibb.co/R70vBrQ/men.png",
-      url: ""
+      url: "shop/mens"
     }
   ]
 };
