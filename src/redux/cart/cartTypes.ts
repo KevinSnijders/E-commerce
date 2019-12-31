@@ -1,6 +1,8 @@
 enum CartTypes {
   TOGGLE_CART_IS_OPEN = "TOGGLE_CART_IS_OPEN",
-  ADD_ITEM = "ADD_ITEM"
+  ADD_ITEM = "ADD_ITEM",
+  REMOVE_ITEM = "REMOVE_ITEM",
+  CLEAR_ITEM_FROM_CART = "CLEAR_ITEM_FROM_CART"
 }
 
 export default CartTypes;

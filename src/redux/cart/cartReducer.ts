@@ -1,6 +1,10 @@
 import CartTypes from "./cartTypes";
 import { CartActions } from "./cartActions";
-import addItemToCart from "./CartUtils";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  clearItemFromCart
+} from "./CartUtils";
 
 export interface Item {
   id?: number;
@@ -46,6 +50,16 @@ const cartReducer = (state: CartState = initCartState, action: CartActions) => {
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload)
+      };
+    case CartTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: removeItemFromCart(state.cartItems, action.payload)
+      };
+    case CartTypes.CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: clearItemFromCart(state.cartItems, action.payload)
       };
     default:
       return {
