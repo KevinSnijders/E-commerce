@@ -2,8 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-
+import { ThemeProvider } from "styled-components";
 import { PersistGate } from "redux-persist/integration/react";
+import { theme } from "./helper";
+
 import { store, persistor } from "./redux/store";
 
 import "./index.scss";
@@ -15,11 +17,13 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate persistor={persistor}>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </PersistGate>
     </BrowserRouter>
   </Provider>,
-  document.getElementById("root") as HTMLElement
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

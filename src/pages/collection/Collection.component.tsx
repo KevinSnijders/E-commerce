@@ -22,7 +22,7 @@ const CollectionPage = ({ collection }: ReturnType<typeof mapStateToProps>) => {
       <CollectionTitle>{title}</CollectionTitle>
       <CollectionItems>
         {items.map((item: Item) => (
-          <CollectionItem key={item.id} item={item} />
+          <CollectionItem key={item.id} item={item} layout="grid" />
         ))}
       </CollectionItems>
     </CollectionContainer>

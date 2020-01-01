@@ -17,13 +17,18 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
   addItemFn: (item: Item) => dispatch(addItem(item))
 });
 
-const CollectionItem = ({
-  item,
-  addItemFn
-}: ItemState & ReturnType<typeof mapDispatchToProps>) => {
+interface Layout {
+  layout?: string;
+}
+
+type CollectionItem = ItemState &
+  Layout &
+  ReturnType<typeof mapDispatchToProps>;
+
+const CollectionItem = ({ item, layout, addItemFn }: CollectionItem) => {
   const { imageUrl, name, price } = item;
   return (
-    <CollectionItemContainer>
+    <CollectionItemContainer layout={layout}>
       <BackgroundImageContainer className="image" imageUrl={imageUrl} />
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>

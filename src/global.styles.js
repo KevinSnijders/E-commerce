@@ -1,17 +1,17 @@
 import { createGlobalStyle } from "styled-components";
+import { screen } from "./helper";
 
 const GlobalStyle = createGlobalStyle`
 html {
-  font-size: 62.5%;
+  font-size: 50%;
 
-  @media screen and (max-width: 800px) {
-    font-size: 50%;
+  @media ${screen.md} {
+    font-size: 62.5%;
   }
 }
 
 body {
   font-family: "Open Sans Condensed";
-  padding: 2rem 4rem;
   font-size: 1.6rem;
 }
 
@@ -22,6 +22,20 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.app {
+  width: auto;
+  margin: auto;
+  @media ${screen.md} {
+    width: 750px;
+  }
+  @media ${screen.lg} {
+    width: 970px;
+  }
+  @media ${screen.xl} {
+    width: 1170px;
+  }
 }
 `;
 

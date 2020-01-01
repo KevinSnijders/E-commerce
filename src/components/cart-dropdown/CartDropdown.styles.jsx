@@ -4,14 +4,14 @@ import CustomButton from "../custom-button/CustomButton.component";
 export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 240px;
-  height: 340px;
+  height: 324px;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  border: 1px solid black;
+  padding: 1.6rem;
+  box-shadow: ${({ theme: { shadow } }) => shadow.normal};
   background-color: white;
-  top: 9rem;
-  right: 4rem;
+  top: 7rem;
+  right: 2.5rem;
   z-index: 5;
 `;
 
@@ -19,7 +19,15 @@ export const CartItemsContainer = styled.div`
   height: 240px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme: { colors } }) => colors.black};
+  }
 `;
 
 export const CartDropdownEmpty = styled.span`

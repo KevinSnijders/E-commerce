@@ -1,31 +1,30 @@
 import styled from "styled-components";
+import { screen } from "../../helper";
 
 export const CollectionPreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 3rem;
-
-  @media screen and (max-width: 800px) {
-    align-items: center;
-  }
+  margin-bottom: 2.4rem;
 `;
 
 export const TitleContainer = styled.h1`
   font-size: 2.8rem;
-  margin-bottom: 2.4rem;
+  margin: 1.2rem 0 2rem;
+  text-align: center;
+
   cursor: pointer;
   &:hover {
-    color: grey;
+    color: ${({ theme: { colors } }) => colors.lightGrey};
   }
 `;
 
 export const PreviewContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 100%;
 
-  @media screen and (max-width: 800px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1.5rem;
+  @media ${screen.md} {
+    flex-wrap: nowrap;
   }
 `;

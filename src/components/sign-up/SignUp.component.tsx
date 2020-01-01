@@ -42,8 +42,8 @@ class SignUp extends Component<{}, FormValues> {
   render() {
     return (
       <SignUpContainer>
-        <SignUpTitle>I already have an account</SignUpTitle>
-        <SignUpSubtitle>Sign in with your email and password</SignUpSubtitle>
+        <SignUpTitle>I do not have a account</SignUpTitle>
+        <SignUpSubtitle>Sign up with your email and password</SignUpSubtitle>
         <Formik
           initialValues={{
             displayName: "",

@@ -1,12 +1,20 @@
 import styled from "styled-components";
+import { screen } from "../../helper";
 
 export const CheckoutContainer = styled.div`
-  width: 55%;
+  margin: 0 auto;
+  padding: 3.2rem 2.4rem 0;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5rem auto 0;
+  margin-bottom: 4.8rem;
+
+  @media ${screen.md} {
+    width: 80%;
+    padding: 3.2rem 1.2rem 0;
+  }
+
   button {
     margin-left: auto;
     margin-top: 5rem;
@@ -22,8 +30,15 @@ export const CheckoutHeaderContainer = styled.div`
 `;
 
 export const HeaderBlockContainer = styled.div`
-  text-transform: capitalize;
   width: 23%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & span {
+    text-transform: capitalize;
+  }
+
   &:last-child {
     width: 8%;
   }
