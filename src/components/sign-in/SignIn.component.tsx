@@ -61,7 +61,7 @@ class SignIn extends Component<{}, FormValues> {
                   onBlur={handleBlur}
                 />
                 <CustomFieldLabel
-                  className={values.password.length ? "shrink" : ""}
+                  className={values.email.length ? "shrink" : ""}
                 >
                   {this.capitalizeFirstCharacter(email)}
                 </CustomFieldLabel>
