@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Dispatch, AnyAction } from "redux";
+
 import setCurrentUser from "./redux/user/userActions";
 import { UserState, User } from "./redux/user/userReducer";
 import selectCurrentUser from "./redux/user/userSelector";
@@ -13,7 +14,7 @@ import Sign from "./pages/sign/Sign.component";
 import Checkout from "./pages/checkout/Checkout.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
-import "./App.scss";
+import GlobalStyle from "./global.styles";
 
 const mapStateToProps = (state: User) => ({
   currentUser: selectCurrentUser(state)
@@ -53,7 +54,8 @@ class App extends Component<
   render() {
     const { currentUser } = this.props;
     return (
-      <div className="App">
+      <div className="app">
+        <GlobalStyle />
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />

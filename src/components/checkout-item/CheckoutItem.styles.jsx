@@ -1,18 +1,25 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const columnStyle = css`
+  width: 23%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const CheckoutItemContainer = styled.div`
   width: 100%;
   display: flex;
   min-height: 100px;
-  border-bottom: 1px solid darkgrey;
-  padding: 1.5rem 0;
+  border-bottom: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
+  padding: 1.6rem 0;
   font-size: 2rem;
   align-items: center;
 `;
 
 export const ImageContainer = styled.div`
-  width: 23%;
-  padding-right: 15px;
+  ${columnStyle}
+  padding: 0 2.4rem;
   img {
     width: 100%;
     height: 100%;
@@ -20,7 +27,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const TextContainer = styled.span`
-  width: 23%;
+  ${columnStyle}
 `;
 
 export const QuantityContainer = styled(TextContainer)`
@@ -34,6 +41,7 @@ export const QuantityContainer = styled(TextContainer)`
 `;
 
 export const RemoveButtonContainer = styled.div`
-  padding-left: 1.2rem;
+  ${columnStyle}
+  width: 8%;
   cursor: pointer;
 `;

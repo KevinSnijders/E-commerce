@@ -1,9 +1,19 @@
 import styled from "styled-components";
+import { screen } from "../../helper";
 
 export const SignInContainer = styled.div`
-  width: 38rem;
+  width: 75%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 6rem;
+
+  @media ${screen.md} {
+    width: 45%;
+  }
+  @media ${screen.lg} {
+    width: 38rem;
+  }
 `;
 
 export const SignInTitle = styled.h2`
