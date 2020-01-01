@@ -7,6 +7,12 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 2.4rem;
+
+  @media screen and (max-width: 800px) {
+    height: 6rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const LogoContainer = styled(Link)`
@@ -14,6 +20,10 @@ export const LogoContainer = styled(Link)`
   width: 7rem;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 800px) {
+    with: 5rem;
+  }
 `;
 
 export const OptionsContainer = styled.div`
@@ -22,6 +32,10 @@ export const OptionsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
 `;
 
 export const OptionLink = styled(Link)`

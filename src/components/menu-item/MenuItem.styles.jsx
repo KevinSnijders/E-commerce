@@ -29,6 +29,10 @@ export const MenuItemContainer = styled.div`
   &:last-child {
     margin-left: 0.5rem;
   }
+
+  @media screen and (max-width: 800px) {
+    height: 20rem;
+  }
 `;
 
 export const BackgroundImageContainer = styled.div`

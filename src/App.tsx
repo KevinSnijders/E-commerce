@@ -13,7 +13,7 @@ import Sign from "./pages/sign/Sign.component";
 import Checkout from "./pages/checkout/Checkout.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
-import "./App.scss";
+import GlobalStyle from "./global.styles";
 
 const mapStateToProps = (state: User) => ({
   currentUser: selectCurrentUser(state)
@@ -54,6 +54,7 @@ class App extends Component<
     const { currentUser } = this.props;
     return (
       <div className="App">
+        <GlobalStyle />
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
