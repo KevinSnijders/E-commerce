@@ -16,17 +16,16 @@ const mapStateToProps = (state: Shop, ownProps: any) => {
   };
 };
 const CollectionPage = ({ collection }: ReturnType<typeof mapStateToProps>) => {
-  const { title, items } = collection;
-  return (
+  return collection ? (
     <CollectionContainer>
-      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionTitle>{collection.title}</CollectionTitle>
       <CollectionItems>
-        {items.map((item: Item) => (
+        {collection.items.map((item: Item) => (
           <CollectionItem key={item.id} item={item} layout="grid" />
         ))}
       </CollectionItems>
     </CollectionContainer>
-  );
+  ) : null;
 };
 
 export default connect(mapStateToProps)(CollectionPage);
