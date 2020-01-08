@@ -1,8 +1,13 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { SpinnerContainer, SpinnerOverlay } from "./WithSpinner.styles";
 
-const WithSpinner = (WrappedComponent: any) => {
-  const Spinner = ({ isLoading, ...props }: any) => {
+interface HOCProps {
+  isLoading: boolean;
+}
+const WithSpinner = (
+  WrappedComponent: React.ComponentType<any>
+): React.FunctionComponent<any> => {
+  const Spinner = ({ isLoading, ...props }: HOCProps & ReactElement) => {
     return isLoading ? (
       <SpinnerOverlay>
         <SpinnerContainer />
