@@ -7,7 +7,7 @@ import {
   CollectionTitle,
   CollectionItems
 } from "./Collection.styles";
-import { Shop } from "../../redux/shop/shopReducer";
+import { Shop } from "../../redux/rootReducer";
 import { Item } from "../../redux/cart/cartReducer";
 
 const mapStateToProps = (state: Shop, ownProps: any) => {
@@ -15,6 +15,7 @@ const mapStateToProps = (state: Shop, ownProps: any) => {
     collection: selectCollection(ownProps.match.params.collectionId)(state)
   };
 };
+
 const CollectionPage = ({ collection }: ReturnType<typeof mapStateToProps>) => {
   return collection ? (
     <CollectionContainer>
