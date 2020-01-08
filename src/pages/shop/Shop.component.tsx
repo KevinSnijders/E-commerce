@@ -1,60 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Route, RouteComponentProps } from "react-router-dom";
-import { Dispatch, AnyAction } from "redux";
-import CollectionsOverview from "../../components/collections-overview/CollectionsOverview.component";
-import CollectionPage from "../collection/Collection.component";
+import { AnyAction } from "redux";
+import { ThunkDispatch } from "redux-thunk";
+import { fetchCollectionsAsync } from "../../redux/shop/shopActions";
+import CollectionsOverviewContainer from "../../container/collections-overview/CollectionsOverview.container";
+import CollectionPageContainer from "../../container/collection-page/CollectionPage.container";
 import { ShopContainer } from "./Shop.styles";
 
-import { CollectionList } from "../../redux/shop/shopReducer";
-
-import {
-  firestore,
-  convertCollectionToMap
-} from "../../firebase/firebase.utils";
-import { updateCollections } from "../../redux/shop/shopActions";
-
-import WithSpinner from "../../components/with-spinner/WithSpinner.component";
-
-const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
-const CollectionPageWithSpinner = WithSpinner(CollectionPage);
-
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
-  updateCollectionsFn: (collectionsMap: CollectionList) =>
-    dispatch(updateCollections(collectionsMap))
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, AnyAction>) => ({
+  fetchCollectionsAsyncReact: () => dispatch(fetchCollectionsAsync())
 });
 
-const Shop: React.FC<RouteComponentProps &
-  ReturnType<typeof mapDispatchToProps>> = ({
+type FCState = RouteComponentProps & ReturnType<typeof mapDispatchToProps>;
+
+const Shop: React.FC<FCState> = ({
   match,
-  updateCollectionsFn
-}: RouteComponentProps & ReturnType<typeof mapDispatchToProps>) => {
-  const [isLoading, setLoading] = useState(true);
-
+  fetchCollectionsAsyncReact
+}: FCState) => {
   useEffect(() => {
-    const collectionRef = firestore.collection("collections");
-
-    collectionRef.onSnapshot(async snapshot => {
-      const collectionMap = convertCollectionToMap(snapshot);
-      updateCollectionsFn(collectionMap);
-      setLoading(false);
-    });
-  }, [updateCollectionsFn]);
+    fetchCollectionsAsyncReact();
+  }, [fetchCollectionsAsyncReact]);
 
   return (
     <ShopContainer>
       <Route
         exact
         path={`${match.path}`}
-        render={(props: any) => (
-          <CollectionsOverviewWithSpinner isLoading={isLoading} {...props} />
-        )}
+        component={CollectionsOverviewContainer}
       />
       <Route
         path={`${match.path}/:collectionId`}
-        render={(props: any) => (
-          <CollectionPageWithSpinner isLoading={isLoading} {...props} />
-        )}
+        component={CollectionPageContainer}
       />
     </ShopContainer>
   );
