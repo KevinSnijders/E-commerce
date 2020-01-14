@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import CollectionItem from "../collection-item/CollectionItem.component";
 import { Collection } from "../../redux/shop/shopReducer";
 import { Item } from "../../redux/cart/cartReducer";
@@ -9,13 +10,22 @@ import {
   PreviewContainer
 } from "./CollectionPreview.styles";
 
-const PreviewCollection: React.FC<Collection> = ({
+type CollectionWithRouteProps = Collection & RouteComponentProps;
+
+const PreviewCollection = ({
   title,
-  items
-}: Collection) => {
+  items,
+  history,
+  match,
+  routeName
+}: Collection & CollectionWithRouteProps) => {
   return (
     <CollectionPreviewContainer>
-      <TitleContainer>{title.toUpperCase()}</TitleContainer>
+      <TitleContainer
+        onClick={() => history.push(`${match.path}/${routeName}`)}
+      >
+        {title.toUpperCase()}
+      </TitleContainer>
       <PreviewContainer>
         {items
           .filter((item: Item, index: number) => index < 4)
@@ -27,4 +37,4 @@ const PreviewCollection: React.FC<Collection> = ({
   );
 };
 
-export default PreviewCollection;
+export default withRouter(PreviewCollection);
