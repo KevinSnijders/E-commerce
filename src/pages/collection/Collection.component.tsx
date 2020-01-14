@@ -7,7 +7,7 @@ import {
   CollectionTitle,
   CollectionItems
 } from "./Collection.styles";
-import { Shop } from "../../redux/shop/shopReducer";
+import { Shop } from "../../redux/rootReducer";
 import { Item } from "../../redux/cart/cartReducer";
 
 const mapStateToProps = (state: Shop, ownProps: any) => {
@@ -15,18 +15,18 @@ const mapStateToProps = (state: Shop, ownProps: any) => {
     collection: selectCollection(ownProps.match.params.collectionId)(state)
   };
 };
+
 const CollectionPage = ({ collection }: ReturnType<typeof mapStateToProps>) => {
-  const { title, items } = collection;
-  return (
+  return collection ? (
     <CollectionContainer>
-      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionTitle>{collection.title}</CollectionTitle>
       <CollectionItems>
-        {items.map((item: Item) => (
+        {collection.items.map((item: Item) => (
           <CollectionItem key={item.id} item={item} layout="grid" />
         ))}
       </CollectionItems>
     </CollectionContainer>
-  );
+  ) : null;
 };
 
 export default connect(mapStateToProps)(CollectionPage);
