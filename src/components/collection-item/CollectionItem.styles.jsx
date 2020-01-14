@@ -34,7 +34,7 @@ export const CollectionItemContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
-  padding: 0 1.2rem;
+  padding: 0 0.6rem;
   margin-bottom: 2.4rem;
   ${getLayoutStyles}
 

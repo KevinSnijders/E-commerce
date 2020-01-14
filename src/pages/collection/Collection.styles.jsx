@@ -4,12 +4,12 @@ import { screen } from "../../helper";
 export const CollectionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 3.2rem 1.2rem 0;
 `;
 
 export const CollectionTitle = styled.h2`
-  font-size: 3.8rem;
-  margin: 0 auto 3rem;
+  font-size: 2.8rem;
+  margin: 1.2rem auto 2rem;
+  text-transform: uppercase;
 `;
 
 export const CollectionItems = styled.div`
